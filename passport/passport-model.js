@@ -6,7 +6,9 @@ module.exports = {
   findById,
   add,
   remove,
-  update
+  update,
+  findId,
+  findPassports
 };
 
 function find() {
@@ -29,9 +31,9 @@ function findById(user_id) {
     .first();
 }
 
-function add(data, id) {
+function add(passport) {
   return db("passport")
-    .insert({ ...data, user_id: id })
+    .insert(passport, "id")
     .then(ids => {
       const [id] = ids;
 
@@ -50,4 +52,30 @@ function update(id, changes) {
   return db("passport")
     .where({ id })
     .update(changes);
+}
+
+function findId(id) {
+  return db("passport")
+    .where({ id })
+    .first();
+}
+
+function findPassports(id) {
+  return db("passport")
+    .join("users", "passport.user_id", "users.id")
+    .select(
+      "passport.id",
+      "passport.restaurantName",
+      "passport.streetAddress",
+      "passport.city",
+      "passport.zipcode",
+      "passport.phoneNumber",
+      "passport.websiteUrl",
+      "passport.myRating",
+      "passport.notes",
+      "passport.stamped",
+      "users.username"
+    )
+    .orderBy("passport.id")
+    .where({ "passport.user_id": id });
 }
