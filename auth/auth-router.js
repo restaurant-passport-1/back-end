@@ -1,9 +1,12 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const Users = require("../users/users-model");
 
-router.post("/register", (req, res) => {
+const Users = require("../users/users-model");
+const validateUser = require("../users/users-helpers");
+const restricted = require("./auth-middleware");
+
+router.post("/register", validateUser, (req, res) => {
   let user = req.body;
   const hash = bcrypt.hashSync(user.password, 8);
   user.password = hash;
@@ -18,7 +21,7 @@ router.post("/register", (req, res) => {
     });
 });
 
-router.post("/login", (req, res) => {
+router.post("/login", validateUser, (req, res) => {
   let { username, password } = req.body;
 
   Users.findBy({ username })
@@ -54,7 +57,7 @@ function signToken(user) {
   return jwt.sign(payload, secret, options);
 }
 
-router.get("/users", (req, res) => {
+router.get("/users", restricted, (req, res) => {
   Users.find()
     .then(users => {
       res.json(users);
