@@ -1,20 +1,18 @@
 {
   "name": "back-end",
   "version": "1.0.0",
-  "description": "",
+  "description": "Build Week Restaurant Passport",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "nodemon index.js",
+    "test": "cross-env DB_ENV=testing jest --watch"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/restaurant-passport-1/back-end.git"
   },
-  "author": "",
+  "author": "Addison Hill",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/restaurant-passport-1/back-end/issues"
-  },
   "homepage": "https://github.com/restaurant-passport-1/back-end#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -26,10 +24,14 @@
     "jest": "^24.9.0",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.20.6",
+    "knex-cleaner": "^1.3.0",
     "sqlite3": "^4.1.1",
     "supertest": "^4.0.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
