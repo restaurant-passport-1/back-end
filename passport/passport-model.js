@@ -25,9 +25,9 @@ function findBy(filter) {
   return db("passport").where(filter);
 }
 
-function findById(user_id) {
+function findById(id) {
   return db("passport")
-    .where({ user_id })
+    .where({ id })
     .first();
 }
 
