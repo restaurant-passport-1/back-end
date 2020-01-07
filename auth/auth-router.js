@@ -7,13 +7,14 @@ const validateUser = require("../users/users-helpers");
 const restricted = require("./auth-middleware");
 
 router.post("/register", validateUser, (req, res) => {
-  let user = req.body;
-  const hash = bcrypt.hashSync(user.password, 8);
-  user.password = hash;
+  let { username, password, name, city, email } = req.body;
+  const hash = bcrypt.hashSync(password, 8);
+  password = hash;
 
-  Users.add(user)
+  Users.add(req.body)
     .then(registered => {
-      res.status(201).json(registered);
+      const token = signToken(registered);
+      res.status(201).json({ username, name, city, email, token });
     })
     .catch(err => {
       console.log(err);
