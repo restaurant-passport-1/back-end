@@ -75,6 +75,7 @@ function findPassports(id) {
       "passport.myRating",
       "passport.notes",
       "passport.stamped",
+      "passport.photoUrl",
       "users.username"
     )
     .orderBy("passport.id")
