@@ -28,6 +28,9 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
+  if (!req.body.user_id) {
+    res.status(400).json({ message: "Error! user_id is required." });
+  }
   const passport = req.body;
   Passport.add(passport)
     .then(passport => {
