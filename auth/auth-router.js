@@ -33,6 +33,8 @@ router.post("/register", validateUser, (req, res) => {
 
 router.post("/login", validateUser, (req, res) => {
   let { username, password } = req.body;
+  console.log("username", username);
+  console.log("body", req.body);
 
   Users.findBy({ username })
     .first()
