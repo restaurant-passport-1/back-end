@@ -17,7 +17,8 @@ function find() {
     "restaurantName",
     "city",
     "myRating",
-    "stamped"
+    "stamped",
+    "user_id"
   );
 }
 
