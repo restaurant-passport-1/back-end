@@ -37,7 +37,6 @@ router.post("/login", validateUser, (req, res) => {
   console.log("body", req.body);
 
   Users.findBy({ username })
-    .first()
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
         const token = signToken(user);
