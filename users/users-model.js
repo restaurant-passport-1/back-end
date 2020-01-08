@@ -14,6 +14,7 @@ function find() {
 }
 
 function findBy(filter) {
+  console.log(filter);
   return db("users")
     .where(filter)
     .returning("*");
