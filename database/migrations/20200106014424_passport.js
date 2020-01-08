@@ -11,6 +11,7 @@ exports.up = function(knex) {
     tbl.integer("myRating").notNullable();
     tbl.string("notes", 255);
     tbl.boolean("stamped");
+    tbl.string("photoUrl", 255);
     tbl
       .integer("user_id")
       .unsigned()
