@@ -38,11 +38,13 @@ router.post("/login", validateUser, (req, res) => {
 
   Users.findBy({ username })
     .then(user => {
+      console.log(user);
       if (user && bcrypt.compareSync(password, user.password)) {
         const token = signToken(user);
         res.status(200).json({
           token,
           user_id: user.id,
+          city: user.city,
           message: `Welcome ${user.username}!`
         });
       } else {
