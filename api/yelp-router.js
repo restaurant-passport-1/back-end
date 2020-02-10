@@ -13,7 +13,7 @@ router.get("/search", async (req, res) => {
       },
     params: {
       limit: 50
-    })
+    }})
     .then(restaurants => {
       res.status(200).json(restaurants.data);
     })
