@@ -10,7 +10,9 @@ router.get("/search", async (req, res) => {
     .get(`https://api.yelp.com/v3/businesses/search?location=${data.city}`, {
       headers: {
         authorization: process.env.REACT_APP_YELP_API_KEY
-      }
+      },
+    params: {
+      limit: 50
     })
     .then(restaurants => {
       res.status(200).json(restaurants.data);
