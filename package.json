@@ -16,7 +16,7 @@
   "license": "ISC",
   "homepage": "https://github.com/restaurant-passport-1/back-end#readme",
   "dependencies": {
-    "axios": "^0.19.1",
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "cross-env": "^6.0.3",
